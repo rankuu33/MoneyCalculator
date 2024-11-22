@@ -2,33 +2,53 @@ package software.ulpgc.moneycalculator.apps.windows.view;
 
 import software.ulpgc.moneycalculator.apps.windows.model.Currency;
 import software.ulpgc.moneycalculator.apps.windows.model.Money;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
 public class SwingMoneyDialog extends JPanel implements MoneyDialog {
-    private final List<Currency> currencies;
     private final TextField amount;
-    private final SwingCurrencyDialog currencyDialog;
+    private SwingCurrencyDialog currencyDialog;
 
-    public SwingMoneyDialog(List<Currency> currencies) {
-        this.currencies = currencies;
+    public SwingMoneyDialog() {
         this.setLayout(new FlowLayout());
+        this.add(new JLabel("Amount:"));
         this.add(amount = createAmountInput());
-        this.add(currencyDialog = new SwingCurrencyDialog(currencies));
     }
 
     private TextField createAmountInput() {
         TextField textField = new TextField();
-        textField.setColumns(4);
+        textField.setColumns(8);
         return textField;
+    }
+
+    private Component createCurrencyDialog(List<Currency> currencies) {
+        SwingCurrencyDialog currencyDialog = new SwingCurrencyDialog();
+        currencyDialog.define(currencies);
+        currencyDialog.setBackground(Color.WHITE);
+        this.currencyDialog = currencyDialog;
+        return currencyDialog;
     }
 
     @Override
     public Money get() {
-        return new Money(toDouble(amount.getText()), currencyDialog.get());
+        try {
+            double moneyAmount = Double.parseDouble(amount.getText());
+            return new Money(moneyAmount, currencyDialog.get());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please, introduce a valid number", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
+
+    @Override
+    public MoneyDialog define(List<Currency> currencies) {
+        add(createCurrencyDialog( currencies ));
+        return this;
+    }
+
+
+
 
     private double toDouble(String text) {
         return Double.parseDouble(text);
