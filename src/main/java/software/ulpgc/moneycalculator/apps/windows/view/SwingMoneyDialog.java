@@ -3,6 +3,7 @@ package software.ulpgc.moneycalculator.apps.windows.view;
 import software.ulpgc.moneycalculator.apps.windows.model.Currency;
 import software.ulpgc.moneycalculator.apps.windows.model.Money;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.List;
 
@@ -25,7 +26,6 @@ public class SwingMoneyDialog extends JPanel implements MoneyDialog {
     private Component createCurrencyDialog(List<Currency> currencies) {
         SwingCurrencyDialog currencyDialog = new SwingCurrencyDialog();
         currencyDialog.define(currencies);
-        currencyDialog.setBackground(Color.WHITE);
         this.currencyDialog = currencyDialog;
         return currencyDialog;
     }
@@ -46,8 +46,6 @@ public class SwingMoneyDialog extends JPanel implements MoneyDialog {
         add(createCurrencyDialog( currencies ));
         return this;
     }
-
-
 
 
     private double toDouble(String text) {

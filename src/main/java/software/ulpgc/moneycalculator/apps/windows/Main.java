@@ -26,6 +26,5 @@ public class Main {
         frame.add("exchange money", command);
         frame.setVisible(true);
 
-
     }
 }
