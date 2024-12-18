@@ -112,7 +112,7 @@ public class SwingMainFrame extends JFrame {
     public SwingMainFrame() throws HeadlessException {
 
         setTitle("Money Calculator");
-        setSize(600, 300); // Tamaño compacto
+        setSize(600, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -205,9 +205,8 @@ public class SwingMainFrame extends JFrame {
     }
 
     private void clearInputs() {
-        // Limpiar los valores de entrada en SwingMoneyDialog
-        if (moneyDialog instanceof SwingMoneyDialog) {
-            SwingMoneyDialog swingMoneyDialog = (SwingMoneyDialog) moneyDialog;
+
+        if (moneyDialog instanceof SwingMoneyDialog swingMoneyDialog) {
             for (Component component : swingMoneyDialog.getComponents()) {
                 if (component instanceof JTextField) {
                     ((JTextField) component).setText("");
@@ -216,8 +215,7 @@ public class SwingMainFrame extends JFrame {
         }
 
         // Limpiar los valores de selección en SwingCurrencyDialog
-        if (currencyDialog instanceof SwingCurrencyDialog) {
-            SwingCurrencyDialog swingCurrencyDialog = (SwingCurrencyDialog) currencyDialog;
+        if (currencyDialog instanceof SwingCurrencyDialog swingCurrencyDialog) {
             for (Component component : swingCurrencyDialog.getComponents()) {
                 if (component instanceof JComboBox) {
                     ((JComboBox<?>) component).setSelectedIndex(0);
@@ -226,8 +224,7 @@ public class SwingMainFrame extends JFrame {
         }
 
         // Limpiar el contenido del MoneyDisplay
-        if (moneyDisplay instanceof SwingMoneyDisplay) {
-            SwingMoneyDisplay swingMoneyDisplay = (SwingMoneyDisplay) moneyDisplay;
+        if (moneyDisplay instanceof SwingMoneyDisplay swingMoneyDisplay) {
             for (Component component : swingMoneyDisplay.getComponents()) {
                 if (component instanceof JLabel) {
                     ((JLabel) component).setText("");
