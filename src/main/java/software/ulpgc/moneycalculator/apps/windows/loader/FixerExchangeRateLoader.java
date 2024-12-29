@@ -14,15 +14,15 @@ import java.util.Map;
 
 
 public class FixerExchangeRateLoader {
-    // URL base de la API
+
     private static final String API_URL = "http://data.fixer.io/api/latest";
 
-    // Convierte el JSON de tasas a un Map
+
     private Map<String, Double> toList(String json) {
         Map<String, Double> list = new HashMap<>();
         JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // Validar que el JSON contiene las claves necesarias
+
         if (!jsonObject.has("rates") || !jsonObject.get("rates").isJsonObject()) {
             throw new IllegalArgumentException("Invalid JSON response: 'rates' key is missing or malformed.");
         }
@@ -34,7 +34,7 @@ public class FixerExchangeRateLoader {
         return list;
     }
 
-    // Carga el JSON desde la API
+
     private String loadJson() throws IOException {
         URL url = new URL(API_URL + "?access_key=" + FixerAPI.key);
         try (InputStream is = url.openStream()) {
@@ -42,7 +42,7 @@ public class FixerExchangeRateLoader {
         }
     }
 
-    // Carga y convierte las tasas a un Map
+
     public Map<String, Double> load() {
         try {
             String json = loadJson();

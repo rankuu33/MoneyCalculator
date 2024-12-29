@@ -3,7 +3,6 @@ package software.ulpgc.moneycalculator.apps.windows.view;
 import software.ulpgc.moneycalculator.apps.windows.model.Currency;
 import software.ulpgc.moneycalculator.apps.windows.model.Money;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.List;
 
@@ -47,8 +46,4 @@ public class SwingMoneyDialog extends JPanel implements MoneyDialog {
         return this;
     }
 
-
-    private double toDouble(String text) {
-        return Double.parseDouble(text);
-    }
 }
